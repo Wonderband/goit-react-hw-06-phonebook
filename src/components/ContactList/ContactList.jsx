@@ -5,7 +5,6 @@ import { ListItem } from './ListItem/ListItem';
 export const ContactList = () => {
   const contacts = useSelector(state => state.contacts.contactsArray);
   const filter = useSelector(state => state.filter.fltr);
-  console.log(filter);
   return (
     <ul>
       {contacts
@@ -25,7 +24,6 @@ export const ContactList = () => {
 };
 
 ContactList.propTypes = {
-  filter: PropTypes.string,
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

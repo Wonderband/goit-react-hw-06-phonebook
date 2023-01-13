@@ -1,7 +1,13 @@
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from 'redux/filterSlice';
 import css from './Filter.module.css';
 
-export const Filter = ({ filter, filterHandle }) => {
+export const Filter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(state => state.filter.fltr);
+  const filterHandle = e => {
+    dispatch(setFilter(e.target.value.toLowerCase().trim()));
+  };
   return (
     <>
       <p>Find contacts by name</p>
@@ -15,9 +21,4 @@ export const Filter = ({ filter, filterHandle }) => {
       />
     </>
   );
-};
-
-Filter.propTypes = {
-  filter: PropTypes.string,
-  filterHandle: PropTypes.func.isRequired,
 };

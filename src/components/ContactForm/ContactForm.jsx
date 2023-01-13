@@ -1,7 +1,20 @@
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
+import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
 
-export const ContactForm = ({ handleSubmit }) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  const handleSubmit = e => {
+    e.preventDefault();
+    const newContact = {
+      name: e.target.name.value.trim(),
+      number: e.target.number.value,
+      id: nanoid(),
+    };
+    dispatch(addContact(newContact));
+    e.currentTarget.reset();
+  };
   return (
     <form onSubmit={handleSubmit}>
       <label className={css.label}>
@@ -29,8 +42,4 @@ export const ContactForm = ({ handleSubmit }) => {
       <button type="submit">Add contact!</button>
     </form>
   );
-};
-
-ContactForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
 };
