@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Section } from '../Section/Section';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
+import { addContact, setFilter } from 'redux/reducer';
+
+import { Section } from '../Section/Section';
 import { Filter } from '../Filter/Filter';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { ContactList } from '../ContactList/ContactList';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact, setFilter } from 'redux/reducer';
 
 export const Phonebook = () => {
   const dispatch = useDispatch();
